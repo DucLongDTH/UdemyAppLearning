@@ -22,7 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:label="listTaskActivity" android:name=".ListTaskActivity"/>
+        <activity
+            android:name=".ListTaskActivity"
+            android:label="listTaskActivity" />
+        <activity
+            android:name=".CalculateAgeActivity"
+            android:label="calculateAge" />
     </application>
 
 </manifest>

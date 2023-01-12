@@ -7,8 +7,13 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2235" />
         <entry key="app/src/main/res/drawable/bg_frame_layout_1st_screen.xml" value="0.2235" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2235" />
+        <entry key="app/src/main/res/layout/activity_calculate_age.xml" value="0.2740036231884058" />
         <entry key="app/src/main/res/layout/activity_list_task.xml" value="0.16354166666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2767210144927536" />
+        <entry key="app/src/main/res/layout/activiy_calculate_age.xml" value="0.2740036231884058" />
+        <entry key="app/src/main/res/layout/content_calculate_age.xml" value="0.2740036231884058" />
+        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.2740036231884058" />
+        <entry key="app/src/main/res/layout/fragment_second.xml" value="0.2740036231884058" />
         <entry key="app/src/main/res/layout/item_list_task.xml" value="0.2578125" />
       </map>
     </option>
