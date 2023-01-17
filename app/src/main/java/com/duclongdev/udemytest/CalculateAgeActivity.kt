@@ -10,6 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.duclongdev.udemytest.databinding.ActivityCalculateAgeBinding
+import java.text.SimpleDateFormat
 import java.util.*
 
 class CalculateAgeActivity : AppCompatActivity() {
@@ -47,7 +48,17 @@ class CalculateAgeActivity : AppCompatActivity() {
         val day = c.get(Calendar.DAY_OF_MONTH)
         val dpd = DatePickerDialog(this, { _, yearSelected, monthOfYear, dayOfMonth ->
             binding.tvDate.text = "$dayOfMonth" + "/" + (monthOfYear + 1) + "/" + yearSelected
+            val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
+            val dateSelected = sdf.parse(
+                "$dayOfMonth/${monthOfYear + 1}/$yearSelected"
+            )
+            val dateSelectedInMinutes = (dateSelected?.time ?: 1) / 60000
+            val currentDateInMinutes = (sdf.parse(sdf.format(System.currentTimeMillis()))?.time ?: 1) / 60000
+            val differenceInMinutes = currentDateInMinutes - dateSelectedInMinutes
+            binding.tvMinutes.text = differenceInMinutes.toString()
+
         }, year, month, day)
+        dpd.datePicker.maxDate = Date().time
         dpd.show()
     }
 
