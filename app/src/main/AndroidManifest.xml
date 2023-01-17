@@ -28,6 +28,9 @@
         <activity
             android:name=".CalculateAgeActivity"
             android:label="calculateAge" />
+        <activity
+            android:name=".CalculateMachineActivity"
+            android:label="calculateMachine" />
     </application>
 
 </manifest>

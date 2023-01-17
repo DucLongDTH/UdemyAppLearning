@@ -14,7 +14,7 @@ class ListTaskActivity : AppCompatActivity() {
         val arrayAdapter: ArrayAdapter<*>
         val tasks = arrayOf(
             "Calculate Age",
-            "App 2",
+            "Calculate Machine",
             "App 3",
         )
         arrayAdapter = ArrayAdapter(this, R.layout.item_list_task, tasks)
@@ -23,6 +23,9 @@ class ListTaskActivity : AppCompatActivity() {
             when (arrayAdapter.getItem(position)) {
                 "Calculate Age" -> {
                     startActivity(Intent(this, CalculateAgeActivity::class.java))
+                }
+                "Calculate Machine" -> {
+                    startActivity(Intent(this, CalculateMachineActivity::class.java))
                 }
                 else -> {}
             }
