@@ -14,7 +14,7 @@
         android:padding="10dp"
         android:textSize="48sp"
         android:gravity="end|bottom"
-        android:text="100000"
+        android:text=""
         android:background="@color/grey"/>
 
     <LinearLayout
@@ -148,6 +148,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="2dp"
+            android:textSize="30sp"
             android:text="."
             android:layout_weight="1"/>
 
