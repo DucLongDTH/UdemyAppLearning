@@ -22,4 +22,14 @@
     <style name="Theme.UdemyAppTest.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.UdemyAppTest.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="TextLabel" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <!-- Hint color and label color in FALSE state -->
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorAccent">@color/teal_700</item>
+        <item name="boxStrokeColor">@color/teal_700</item>
+        <item name="android:colorAccent">@color/teal_700</item>
+        <item name="colorPrimary">@color/teal_700</item>
+
+
+    </style>
 </resources>
