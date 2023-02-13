@@ -4,19 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QuizAppStartActivity">
+    android:background="@drawable/ic_bg"
+    tools:context=".quizapp.QuizAppStartActivity">
 
     <TextView
         android:id="@+id/tv_3"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/teal_700"
         android:gravity="center"
         android:text="Quiz App"
         android:textAllCaps="true"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +33,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_3"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3">
 
         <LinearLayout
@@ -51,38 +52,41 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Please enter your name !"/>
+                android:layout_marginTop="10dp"
+                android:text="Please enter your name !" />
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/teal_700"
-                style="@style/TextLabel"
-                >
+                app:hintTextColor="@color/teal_700">
+
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:hint="Name"
-                    android:textColor="#363A43"
-                    android:textColorHint="#7A8089"
-                    android:backgroundTint="@color/teal_700"
-                    android:inputType="textCapWords"
+                    android:id="@+id/edt_name"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/teal_700"
+                    android:hint="Name"
+                    android:inputType="textCapWords"
+                    android:textColor="#363A43"
+                    android:textColorHint="#7A8089" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:layout_marginTop="16dp"
+                android:id="@+id/btn_begin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/teal_700"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/purple_500"
                 android:text="Begin"
-                android:textColor="@color/white"
-                android:layout_marginHorizontal="20dp" />
+                android:textColor="@color/white" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
