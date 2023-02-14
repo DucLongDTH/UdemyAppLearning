@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import com.duclongdev.udemytest.kiddrawingapp.KidDrawingAppMain
 import com.duclongdev.udemytest.quizapp.QuizAppStartActivity
 import kotlinx.android.synthetic.main.activity_list_task.*
 
@@ -17,6 +18,7 @@ class ListTaskActivity : AppCompatActivity() {
             "Calculate Age",
             "Calculate Machine",
             "Quiz App",
+            "Kids Drawing App"
         )
         arrayAdapter = ArrayAdapter(this, R.layout.item_list_task, tasks)
         lv_task.adapter = arrayAdapter
@@ -30,6 +32,9 @@ class ListTaskActivity : AppCompatActivity() {
                 }
                 "Quiz App" -> {
                     startActivity(Intent(this, QuizAppStartActivity::class.java))
+                }
+                "Kids Drawing App" -> {
+                    startActivity(Intent(this, KidDrawingAppMain::class.java))
                 }
                 else -> {}
             }
