@@ -1,15 +1,11 @@
 package com.duclongdev.udemytest.quizapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.duclongdev.udemytest.ListTaskActivity
-import com.duclongdev.udemytest.R
-import com.duclongdev.udemytest.databinding.ActivityCalculateBinding
+import androidx.appcompat.app.AppCompatActivity
 import com.duclongdev.udemytest.databinding.ActivityQuizAppStartBinding
-import kotlin.time.DurationUnit
-import kotlin.time.toDuration
+import com.duclongdev.udemytest.quizapp.constants.QuizConstants
 
 class QuizAppStartActivity : AppCompatActivity() {
 
@@ -17,14 +13,17 @@ class QuizAppStartActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding  = ActivityQuizAppStartBinding.inflate(layoutInflater)
+        binding = ActivityQuizAppStartBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btnBegin.setOnClickListener {
-            if(binding.edtName.text?.isEmpty() == true){
-                Toast.makeText(this,"Please enter your name !", Toast.LENGTH_SHORT).show()
+            if (binding.edtName.text?.isEmpty() == true) {
+                Toast.makeText(this, "Please enter your name !", Toast.LENGTH_SHORT).show()
             } else {
-                startActivity(Intent(this, QuizQuestionsActivity::class.java))
+                startActivity(
+                    Intent(this, QuizQuestionsActivity::class.java)
+                        .putExtra(QuizConstants.USER_NAME, binding.edtName.text.toString())
+                )
                 finish()
             }
         }

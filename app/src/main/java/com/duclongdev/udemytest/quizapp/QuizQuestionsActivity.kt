@@ -1,11 +1,13 @@
 package com.duclongdev.udemytest.quizapp
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.duclongdev.udemytest.R
@@ -19,11 +21,16 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var mCurrentPost = 1
     private lateinit var mListQuestion: ArrayList<Question>
     private var mSelectedOptionPos = 0
+    private var mCorrectAnswer = 0
+    private var mUserName = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityQuizQuestionsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        intent.getStringExtra(QuizConstants.USER_NAME)?.let { name ->
+            mUserName = name
+        }
         mListQuestion = QuizConstants.getQuestions()
         setQuestion()
         binding.tvOptionOne.setOnClickListener(this)
@@ -35,7 +42,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     @SuppressLint("SetTextI18n")
     private fun setQuestion() {
-        mCurrentPost = 1
+        setDefaultOptionsView()
         val question = mListQuestion[mCurrentPost - 1]
         binding.progressBar.progress = mCurrentPost
         binding.tvProgress.text = "$mCurrentPost/${progressBar?.max}"
@@ -74,7 +81,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun selectedOptionView(tv: TextView, selectedOptionNum: Int){
+    private fun selectedOptionView(tv: TextView, selectedOptionNum: Int) {
         setDefaultOptionsView()
         mSelectedOptionPos = selectedOptionNum
         tv.setTextColor(Color.parseColor("#9FA8DA"))
@@ -82,22 +89,69 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         tv.background = ContextCompat.getDrawable(this, R.drawable.selected_option_border_bg)
     }
 
+    private fun answerView(answer: Int, drawableView: Int) {
+        when (answer) {
+            1 -> {
+                binding.tvOptionOne.background = ContextCompat.getDrawable(this@QuizQuestionsActivity, drawableView)
+            }
+            2 -> {
+                binding.tvOptionTwo.background = ContextCompat.getDrawable(this@QuizQuestionsActivity, drawableView)
+            }
+            3 -> {
+                binding.tvOptionThree.background = ContextCompat.getDrawable(this@QuizQuestionsActivity, drawableView)
+            }
+            4 -> {
+                binding.tvOptionFour.background = ContextCompat.getDrawable(this@QuizQuestionsActivity, drawableView)
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
     override fun onClick(v: View?) {
-        when(v?.id){
+        when (v?.id) {
             R.id.tv_option_one -> {
-                selectedOptionView(binding.tvOptionOne,1)
+                selectedOptionView(binding.tvOptionOne, 1)
             }
             R.id.tv_option_two -> {
-                selectedOptionView(binding.tvOptionTwo,2)
+                selectedOptionView(binding.tvOptionTwo, 2)
             }
             R.id.tv_option_three -> {
-                selectedOptionView(binding.tvOptionThree,3)
+                selectedOptionView(binding.tvOptionThree, 3)
             }
             R.id.tv_option_four -> {
-                selectedOptionView(binding.tvOptionFour,4)
+                selectedOptionView(binding.tvOptionFour, 4)
             }
             R.id.btn_submit -> {
-                // TODO "implement btn submit"
+                if (mSelectedOptionPos == 0) {
+                    mCurrentPost++
+                    when {
+                        mCurrentPost <= mListQuestion.size -> {
+                            setQuestion()
+                        }
+                        else -> {
+                            val intent = Intent(this, QuizResultActivity::class.java)
+                            intent.putExtra(QuizConstants.USER_NAME, mUserName)
+                            intent.putExtra(QuizConstants.CORRECT_ANSWER, mCorrectAnswer)
+                            intent.putExtra(QuizConstants.TOTAL_QUESTION, mListQuestion.size)
+                            startActivity(intent)
+                            finish()
+                        }
+                    }
+                } else {
+                    val question = mListQuestion[mCurrentPost - 1]
+                    if (question.correctAnswer != mSelectedOptionPos) {
+                        answerView(mSelectedOptionPos, R.drawable.wrong_option_border_bg)
+                    } else {
+                        mCorrectAnswer++
+                    }
+                    answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
+                    if(mCurrentPost == mListQuestion.size){
+                        binding.btnSubmit.text = "Finish"
+                    } else {
+                        binding.btnSubmit.text = "Go to next question"
+                    }
+                    mSelectedOptionPos = 0
+                }
             }
         }
     }

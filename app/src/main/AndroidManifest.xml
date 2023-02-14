@@ -14,13 +14,17 @@
         android:theme="@style/Theme.UdemyAppTest"
         tools:targetApi="31">
         <activity
-            android:name=".quizapp.QuizQuestionsActivity"
+            android:name=".quizapp.QuizResultActivity"
             android:theme="@style/Theme.UdemyAppTest.NoActionBar"
             android:exported="false" />
         <activity
+            android:name=".quizapp.QuizQuestionsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.UdemyAppTest.NoActionBar" />
+        <activity
             android:name=".quizapp.QuizAppStartActivity"
-            android:theme="@style/Theme.UdemyAppTest.NoActionBar"
-            android:label="quizAppStart"></activity>
+            android:label="quizAppStart"
+            android:theme="@style/Theme.UdemyAppTest.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
